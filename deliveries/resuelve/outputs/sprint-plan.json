@@ -1,0 +1,14 @@
+{
+  "product": "APP Resuelve",
+  "sprint": 1,
+  "sprint_goal": "El cliente pre-aprobado puede descargar la APP, verificar su cédula, registrarse con OTP y solicitar su línea de crédito en 3 pasos desde el celular, con mensajes claros si falla la red.",
+  "capacity": 20,
+  "committed": 20,
+  "stories": ["US-01", "US-02", "US-03", "US-04", "US-05", "US-11"],
+  "deferred": ["US-07", "US-06", "US-08", "US-09", "US-10", "US-12", "US-13", "US-14", "US-15", "US-16", "US-17", "US-18", "US-19", "US-20"],
+  "notes": [
+    "US-07 (login, 3 pts, prioridad 6) no cabe en los 2 pts restantes tras US-05. Se incluye US-11 (2 pts, prioridad 7, sin dependencias). US-07 abre Sprint 2.",
+    "US-11 (mensajes de conectividad) es transversal y sin dependencias: robustece el flujo de onboarding ante errores de red durante el registro.",
+    "Pre-condición crítica: el equipo debe validar el contrato de API del backend de Resuelve (OQ-01) antes del inicio del sprint. Sin contrato, construir mocks para US-02, US-03 y US-04."
+  ]
+}

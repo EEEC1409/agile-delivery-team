@@ -1,0 +1,75 @@
+{
+  "discovery": "resuelve",
+  "personas": [
+    {
+      "name": "C. (Cliente Resuelve)",
+      "role": "cliente",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "Entrevistas_APP_Resuelve.md"
+    },
+    {
+      "name": "Administrador de negocio",
+      "role": "administrador de negocio",
+      "primary": false,
+      "backing": "referenciada",
+      "source": "Entrevistas_APP_Resuelve.md"
+    }
+  ],
+  "pains": [
+    {
+      "id": "proceso-no-simple",
+      "description": "El proceso en la APP no resulta simple, rápido o seguro, lo que afecta la experiencia y puede provocar abandono del flujo.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "incertidumbre-estado-solicitud",
+      "description": "El cliente no sabe si debe esperar o tomar alguna acción mientras su solicitud está en revisión.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "desconocimiento-situacion-financiera",
+      "description": "El cliente no tiene una visión inmediata de su situación financiera al ingresar a la APP.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "falta-motivacion-pago",
+      "description": "El cliente no recibe estímulo ni recompensa visible que lo motive a pagar a tiempo.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "olvido-fecha-pago",
+      "description": "El cliente olvida cuándo debe pagar y necesita recordatorios proactivos.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "confusion-error-conectividad",
+      "description": "El cliente no distingue si el problema es la APP o la conectividad, lo que genera falsa percepción de fallo.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "rechazo-sin-explicacion",
+      "description": "El cliente que no califica o cuyo canje es rechazado no recibe explicación clara ni instrucción de qué hacer.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "sesion-expirada-sin-aviso",
+      "description": "La sesión del cliente expira sin notificación previa, dejando su información potencialmente desprotegida.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "C. (Cliente Resuelve)"
+    },
+    {
+      "id": "banner-requiere-deploy",
+      "description": "El administrador depende del equipo técnico para actualizar el banner de la APP porque requiere publicar una nueva versión.",
+      "source": "Entrevistas_APP_Resuelve.md",
+      "persona": "Administrador de negocio"
+    }
+  ]
+}

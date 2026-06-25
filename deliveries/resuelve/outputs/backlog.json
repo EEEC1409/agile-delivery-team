@@ -1,0 +1,427 @@
+{
+  "product": "APP Resuelve",
+  "generated_at": "2026-06-20",
+  "discovery_warning": "Generado con 1 sola fuente de entrevista. Triangular con segunda entrevista antes de comprometer desarrollo.",
+  "success_metric": {
+    "name": "Tasa de conversión de onboarding",
+    "target": "≥ 40 % en 7 días desde invitación",
+    "evaluation_point": "fin del mes 2 de lanzamiento"
+  },
+  "epics": [
+    {
+      "id": "EPIC-01",
+      "title": "Onboarding e Identificación de Cliente",
+      "value": "Convierte clientes pre-aprobados invitados en usuarios activos con cuenta creada y línea de crédito en trámite.",
+      "priority": 1,
+      "origin": "mvp-canvas.md → Funcionalidades mínimas ítems 1 y 2; user-stories.md → US-01–US-05; requisitos.md → R-01–R-11"
+    },
+    {
+      "id": "EPIC-02",
+      "title": "Autenticación y Seguridad de Sesión",
+      "value": "Habilita el acceso recurrente y seguro. Habilitador transversal requerido por todas las épicas posteriores.",
+      "priority": 2,
+      "origin": "mvp-canvas.md → Funcionalidades mínimas ítem 7; user-stories.md → US-06, US-07, US-13; requisitos.md → R-12, R-14, R-15, R-35, R-36, R-40, R-41"
+    },
+    {
+      "id": "EPIC-03",
+      "title": "Dashboard y Visibilidad Financiera",
+      "value": "Entrega el outcome principal: el cliente conoce su deuda exacta y su fecha límite sin ir a una sucursal.",
+      "priority": 3,
+      "origin": "mvp-canvas.md → Funcionalidades mínimas ítems 3 y 4; user-stories.md → US-08, US-09; requisitos.md → R-16, R-18"
+    },
+    {
+      "id": "EPIC-04",
+      "title": "Incentivos de Pago y Motivación",
+      "value": "Convierte visibilidad financiera en comportamiento de pago. Diferenciador que mueve el outcome al impacto: menor morosidad.",
+      "priority": 4,
+      "origin": "mvp-canvas.md → Funcionalidades mínimas ítem 5; user-stories.md → US-10, US-11; requisitos.md → R-19, R-20"
+    },
+    {
+      "id": "EPIC-05",
+      "title": "Notificaciones Push de Pago",
+      "value": "Cierra el ciclo de comportamiento: recordatorio proactivo → pago a tiempo → recompensa. Ataca el dolor de olvido de fecha.",
+      "priority": 5,
+      "origin": "mvp-canvas.md → Funcionalidades mínimas ítem 6; user-stories.md → US-12; requisitos.md → R-37"
+    }
+  ],
+  "stories": [
+    {
+      "id": "US-01",
+      "epic": "EPIC-01",
+      "title": "Pantalla de bienvenida con video de marca",
+      "as_a": "cliente que instala la APP por primera vez",
+      "want": "ver la pantalla de bienvenida con el logo y un video de la marca Resuelve",
+      "so_that": "confirmo que estoy en la APP correcta y conozco la marca desde el primer contacto",
+      "acceptance_criteria": [
+        "Dado que el cliente abre la APP por primera vez, cuando la pantalla carga, entonces se muestra el logo de Resuelve y el video de la marca comienza a reproducirse automáticamente.",
+        "Dado que el video termina o el cliente toca 'Continuar', cuando ocurre cualquiera de los dos eventos, entonces la APP avanza a la pantalla de ingreso de cédula.",
+        "Dado que el dispositivo no tiene conexión al abrir la APP, cuando la pantalla de bienvenida carga, entonces el logo se muestra siempre (el video puede omitirse) y el botón 'Continuar' está disponible."
+      ],
+      "estimate": 2,
+      "dependencies": [],
+      "open_questions": [],
+      "priority": 1,
+      "origin": "requisitos.md → R-01; user-stories.md → US-01 (Entrevistas_APP_Resuelve.md · US-001)"
+    },
+    {
+      "id": "US-02",
+      "epic": "EPIC-01",
+      "title": "Verificación de cédula y clasificación del flujo del cliente",
+      "as_a": "cliente",
+      "want": "ingresar mi número de cédula para que la APP identifique si soy cliente Resuelve y me dirija al flujo correcto",
+      "so_that": "no pierdo tiempo en pantallas que no aplican a mi situación",
+      "acceptance_criteria": [
+        "Dado que ingreso una cédula válida de cliente Resuelve activo, cuando presiono 'Continuar', entonces la APP muestra el flujo de cliente existente.",
+        "Dado que ingreso una cédula de cliente pre-aprobado, cuando presiono 'Continuar', entonces la APP muestra el flujo de oferta de crédito.",
+        "Dado que ingreso una cédula no registrada, cuando presiono 'Continuar', entonces la APP muestra el flujo de cliente nuevo.",
+        "Dado que ingreso una cédula en lista negra o sin oferta disponible, cuando presiono 'Continuar', entonces la APP muestra un mensaje claro sin lenguaje técnico ni mensajes genéricos."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-01"],
+      "open_questions": [],
+      "priority": 2,
+      "origin": "user-stories.md → US-01; requisitos.md → R-02, R-04"
+    },
+    {
+      "id": "US-03",
+      "epic": "EPIC-01",
+      "title": "Visualización de oferta pre-aprobada y solicitud en 3 pasos",
+      "as_a": "cliente pre-aprobado",
+      "want": "ver el monto de mi línea de crédito disponible y completar la solicitud en no más de 3 pantallas de ingreso de datos",
+      "so_that": "activo mi crédito sin ir a una sucursal",
+      "acceptance_criteria": [
+        "Dado que la APP detecta que tengo una oferta pre-aprobada, cuando la pantalla carga, entonces veo el monto de mi línea de crédito antes de iniciar la solicitud.",
+        "Dado que inicio la solicitud, cuando la completo, entonces el proceso no supera 3 pantallas de ingreso de datos.",
+        "Dado que completo los 3 pasos, cuando confirmo, entonces recibo una confirmación visual de que la solicitud fue enviada.",
+        "Dado que tengo una línea de crédito inactiva, cuando ingreso a la APP, entonces veo la capacidad de pago disponible y las opciones de activación."
+      ],
+      "estimate": 5,
+      "dependencies": ["US-02"],
+      "open_questions": [],
+      "priority": 3,
+      "origin": "user-stories.md → US-02; requisitos.md → R-03, R-06; mvp-canvas.md → Funcionalidades mínimas ítem 2"
+    },
+    {
+      "id": "US-04",
+      "epic": "EPIC-01",
+      "title": "Registro de datos personales con validación OTP",
+      "as_a": "cliente en proceso de registro",
+      "want": "ingresar mis datos personales (nombre, teléfono, correo) y validarlos con un código OTP enviado a mi correo",
+      "so_that": "confirmo mi identidad de forma segura sin depender de un asesor",
+      "acceptance_criteria": [
+        "Dado que lleno nombre, teléfono y correo válidos, cuando presiono 'Siguiente', entonces la APP envía un OTP al correo ingresado en menos de 2 minutos.",
+        "Dado que recibo el OTP, cuando lo ingreso correctamente, entonces la APP avanza al paso de creación de contraseña.",
+        "Dado que el OTP es incorrecto, cuando lo ingreso, entonces la APP muestra un mensaje claro con la opción de reenviar.",
+        "Dado que el OTP expira, cuando intento usarlo, entonces la APP muestra un error y la opción de solicitar uno nuevo.",
+        "Dado que algún campo del formulario es inválido, cuando presiono 'Siguiente', entonces la APP muestra un mensaje de error claro y accionable por campo."
+      ],
+      "estimate": 5,
+      "dependencies": ["US-02"],
+      "open_questions": [],
+      "priority": 4,
+      "origin": "user-stories.md → US-03; requisitos.md → R-07, R-08, R-11"
+    },
+    {
+      "id": "US-05",
+      "epic": "EPIC-01",
+      "title": "Creación de contraseña y confirmación de cuenta",
+      "as_a": "cliente que validó su identidad con OTP",
+      "want": "crear una contraseña personal que cumpla los requisitos de seguridad y confirmarla",
+      "so_that": "mi cuenta queda protegida desde el primer uso y mis datos persisten en todos los sistemas integrados de Resuelve",
+      "acceptance_criteria": [
+        "Dado que ingreso una contraseña con mínimo 8 caracteres, al menos una mayúscula y un número, cuando presiono 'Crear cuenta', entonces la APP confirma que la cuenta fue creada.",
+        "Dado que las contraseñas no coinciden en el campo de confirmación, cuando intento continuar, entonces la APP muestra un error antes de intentar guardar.",
+        "Dado que el registro se completa con éxito, cuando la APP persiste los datos, entonces mi información queda disponible en todos los sistemas integrados de Resuelve.",
+        "Dado que ocurre un error al persistir los datos, cuando la APP lo detecta, entonces muestra un mensaje claro con instrucciones de qué hacer (reintentar o contactar soporte)."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-04"],
+      "open_questions": [],
+      "priority": 5,
+      "origin": "user-stories.md → US-04; requisitos.md → R-09, R-10, R-11"
+    },
+    {
+      "id": "US-06",
+      "epic": "EPIC-01",
+      "title": "Consulta del estado de solicitud en revisión",
+      "as_a": "cliente con solicitud enviada",
+      "want": "ver el estado actual de mi trámite con una etiqueta clara (En revisión, Aprobado, Requiere acción)",
+      "so_that": "sé si debo esperar o si hay algo concreto que debo hacer de mi parte",
+      "acceptance_criteria": [
+        "Dado que inicio sesión con una solicitud en revisión, cuando entro a la APP, entonces veo el estado con una etiqueta clara: 'En revisión', 'Aprobado' o 'Requiere acción'.",
+        "Dado que el estado es 'Requiere acción', cuando lo veo, entonces aparece un botón o instrucción concreta de qué debo hacer.",
+        "Dado que el estado es 'Aprobado', cuando lo veo, entonces la APP me indica el siguiente paso para usar mi línea de crédito."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-05"],
+      "open_questions": [],
+      "priority": 8,
+      "origin": "user-stories.md → US-05; requisitos.md → R-05; evidence-map.json → pain: incertidumbre-estado-solicitud"
+    },
+    {
+      "id": "US-07",
+      "epic": "EPIC-02",
+      "title": "Inicio de sesión con cédula y contraseña",
+      "as_a": "cliente registrado",
+      "want": "iniciar sesión ingresando mi cédula y contraseña",
+      "so_that": "accedo a mi información de crédito en menos de 3 segundos",
+      "acceptance_criteria": [
+        "Dado que ingreso cédula y contraseña correctas, cuando presiono 'Ingresar', entonces la APP me lleva al dashboard en menos de 3 segundos.",
+        "Dado que ingreso datos incorrectos, cuando presiono 'Ingresar', entonces la APP muestra un mensaje de error claro sin revelar cuál campo específico falló.",
+        "Dado que fallo 5 intentos consecutivos, cuando ocurre el quinto fallo, entonces la APP bloquea temporalmente el acceso e indica el tiempo de espera."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-05"],
+      "open_questions": [],
+      "priority": 6,
+      "origin": "user-stories.md → US-06; requisitos.md → R-12"
+    },
+    {
+      "id": "US-08",
+      "epic": "EPIC-02",
+      "title": "Recuperación de contraseña por correo registrado",
+      "as_a": "cliente que olvidó su contraseña",
+      "want": "recuperar mi contraseña mediante un enlace enviado a mi correo registrado",
+      "so_that": "puedo volver a ingresar a la APP sin contactar a un asesor",
+      "acceptance_criteria": [
+        "Dado que presiono 'Olvidé mi contraseña' e ingreso mi correo registrado, cuando confirmo, entonces recibo un enlace de recuperación en menos de 2 minutos.",
+        "Dado que uso el enlace de recuperación, cuando creo una nueva contraseña válida, entonces la APP confirma el cambio y me redirige al login.",
+        "Dado que el enlace de recuperación expiró, cuando intento usarlo, entonces la APP muestra un mensaje claro y la opción de solicitar un nuevo enlace."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-07"],
+      "open_questions": [],
+      "priority": 10,
+      "origin": "user-stories.md → US-07; requisitos.md → R-14"
+    },
+    {
+      "id": "US-09",
+      "epic": "EPIC-02",
+      "title": "Cierre de sesión desde cualquier pantalla",
+      "as_a": "cliente autenticado",
+      "want": "cerrar sesión desde cualquier pantalla de la APP",
+      "so_that": "protejo mi información financiera cuando termino de usarla",
+      "acceptance_criteria": [
+        "Dado que estoy en cualquier pantalla de la APP, cuando accedo al menú y selecciono 'Cerrar sesión', entonces mi sesión se invalida en el servidor y soy redirigido a la pantalla de login.",
+        "Dado que cierro sesión, cuando la sesión se invalida, entonces ya no puedo acceder a mis datos financieros sin volver a autenticarme."
+      ],
+      "estimate": 1,
+      "dependencies": ["US-07"],
+      "open_questions": [],
+      "priority": 9,
+      "origin": "requisitos.md → R-15"
+    },
+    {
+      "id": "US-10",
+      "epic": "EPIC-02",
+      "title": "Aviso y redirección al login por sesión expirada",
+      "as_a": "cliente autenticado",
+      "want": "recibir un aviso claro cuando mi sesión expire por inactividad y ser redirigido al login",
+      "so_that": "no pierdo mi progreso no guardado y sé exactamente qué hacer para volver a entrar",
+      "acceptance_criteria": [
+        "Dado que mi sesión expira por inactividad, cuando intento realizar cualquier acción, entonces la APP me notifica con un mensaje claro que indica que la sesión expiró.",
+        "Dado que la APP notifica el vencimiento de sesión, cuando confirmo el mensaje, entonces soy redirigido al login sin perder mi progreso no guardado.",
+        "Dado que vuelvo a iniciar sesión tras una expiración, cuando me autentico correctamente, entonces regreso a la sección donde estaba antes de la expiración."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-07"],
+      "open_questions": [],
+      "priority": 11,
+      "origin": "user-stories.md → US-13; requisitos.md → R-35; evidence-map.json → pain: sesion-expirada-sin-aviso"
+    },
+    {
+      "id": "US-11",
+      "epic": "EPIC-02",
+      "title": "Mensajes diferenciados para error de conectividad vs. servicio no disponible",
+      "as_a": "cliente",
+      "want": "ver mensajes claros que distingan si el problema es mi conexión a internet o si el servicio de Resuelve no está disponible",
+      "so_that": "no confundo un fallo de la APP con un problema de red y sé qué acción tomar",
+      "acceptance_criteria": [
+        "Dado que pierdo conexión a internet mientras uso la APP, cuando intento realizar una acción que la requiere, entonces veo un mensaje con el texto 'Sin conexión a internet', diferenciado visualmente de un error del servicio.",
+        "Dado que hay un error en el servicio de Resuelve, cuando la APP lo detecta, entonces muestra 'Servicio no disponible' sin exponer mensajes técnicos ni códigos de error.",
+        "Dado que la conexión o el servicio se restaura, cuando ocurre, entonces la APP permite reintentar la acción sin necesidad de reiniciarla."
+      ],
+      "estimate": 2,
+      "dependencies": [],
+      "open_questions": [],
+      "priority": 7,
+      "origin": "user-stories.md → US-13; requisitos.md → R-36, R-41; evidence-map.json → pain: confusion-error-conectividad"
+    },
+    {
+      "id": "US-12",
+      "epic": "EPIC-03",
+      "title": "Dashboard con saludo personalizado y resumen de crédito",
+      "as_a": "cliente autenticado",
+      "want": "ver al ingresar a la APP mi nombre, el saldo disponible de mi línea de crédito y el estado general de mi cuenta",
+      "so_that": "tengo una visión inmediata de mi situación financiera sin navegar por múltiples pantallas",
+      "acceptance_criteria": [
+        "Dado que inicio sesión exitosamente, cuando llego al dashboard, entonces veo mi nombre, el saldo de mi línea de crédito disponible y un indicador del estado general de mi cuenta.",
+        "Dado que tengo un pago próximo, cuando entro al dashboard, entonces el resumen muestra la fecha y el monto mínimo de pago de forma destacada.",
+        "Dado que los datos de mi crédito cargan correctamente, cuando aparecen en pantalla, entonces los montos están formateados en la moneda local (ej. $ 1.200,00)."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-07"],
+      "open_questions": [],
+      "priority": 12,
+      "origin": "user-stories.md → US-08; requisitos.md → R-16; evidence-map.json → pain: desconocimiento-situacion-financiera"
+    },
+    {
+      "id": "US-13",
+      "epic": "EPIC-03",
+      "title": "Estado de cuenta con cuota al cobro, cuota consumida y fecha mínima de pago",
+      "as_a": "cliente",
+      "want": "consultar el detalle de mi estado de cuenta con cuota al cobro, cuota consumida y fecha mínima de pago claramente diferenciadas",
+      "so_that": "puedo planificar mis pagos con información exacta sin llamar a un asesor",
+      "acceptance_criteria": [
+        "Dado que accedo a la sección de estado de cuenta, cuando la pantalla carga, entonces veo la cuota al cobro, la cuota consumida y la fecha mínima de pago como campos diferenciados con etiquetas claras.",
+        "Dado que hay movimientos recientes en mi cuenta, cuando los veo en el estado de cuenta, entonces aparecen con fecha, descripción breve y monto.",
+        "Dado que no hay movimientos recientes, cuando accedo al estado de cuenta, entonces veo un mensaje que indica que no hay movimientos en el período."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-12"],
+      "open_questions": [],
+      "priority": 13,
+      "origin": "user-stories.md → US-09; requisitos.md → R-18"
+    },
+    {
+      "id": "US-14",
+      "epic": "EPIC-03",
+      "title": "Indicador visual de pago próximo destacado en el dashboard",
+      "as_a": "cliente con un pago próximo",
+      "want": "ver la fecha y el monto mínimo de mi próximo pago de forma destacada en el dashboard",
+      "so_that": "actúo antes del vencimiento sin necesidad de entrar a la sección de estado de cuenta",
+      "acceptance_criteria": [
+        "Dado que tengo un pago con fecha dentro de los próximos 7 días, cuando entro al dashboard, entonces el indicador de pago próximo se muestra en un área destacada con la fecha y el monto.",
+        "Dado que ya pagué antes de la fecha mínima, cuando entro al dashboard, entonces el indicador no muestra alerta de pago pendiente.",
+        "Dado que toco el indicador de pago próximo, cuando navego, entonces la APP me lleva directamente al estado de cuenta con el detalle completo."
+      ],
+      "estimate": 2,
+      "dependencies": ["US-12"],
+      "open_questions": [],
+      "priority": 14,
+      "origin": "user-stories.md → US-08 criterio 2; requisitos.md → R-16, R-18"
+    },
+    {
+      "id": "US-15",
+      "epic": "EPIC-04",
+      "title": "Gráfico de progreso con niveles de beneficio según comportamiento de pago",
+      "as_a": "cliente",
+      "want": "ver un gráfico con al menos 3 niveles de premio diferenciados que muestre qué beneficio gané y cuál puedo ganar si pago a tiempo",
+      "so_that": "me motivo a pagar antes de la fecha límite con una meta visual concreta",
+      "acceptance_criteria": [
+        "Dado que accedo a la sección de beneficios, cuando la pantalla carga, entonces veo un gráfico con al menos 3 niveles de premio diferenciados visualmente por comportamiento de pago.",
+        "Dado que mi nivel de pago actual tiene un beneficio ganado, cuando lo veo en el gráfico, entonces puedo distinguir visualmente el beneficio que ya gané del que puedo ganar si pago a tiempo.",
+        "Dado que no he realizado ningún pago aún, cuando veo el gráfico, entonces aparece mi nivel inicial y el beneficio que puedo obtener al pagar por primera vez."
+      ],
+      "estimate": 5,
+      "dependencies": ["US-13"],
+      "open_questions": [],
+      "priority": 15,
+      "origin": "user-stories.md → US-10; requisitos.md → R-19; evidence-map.json → pain: falta-motivacion-pago"
+    },
+    {
+      "id": "US-16",
+      "epic": "EPIC-04",
+      "title": "Modal de celebración con premio al pagar a tiempo",
+      "as_a": "cliente que realizó un pago antes de la fecha mínima",
+      "want": "recibir un modal de celebración con el nombre y la imagen del premio que gané",
+      "so_that": "siento que mi buen comportamiento de pago tiene una recompensa concreta y visible",
+      "acceptance_criteria": [
+        "Dado que el backend confirma un pago realizado antes de la fecha mínima, cuando la APP recibe la confirmación, entonces muestra un modal de celebración con el nombre y la imagen del premio ganado.",
+        "Dado que el modal de celebración aparece, cuando el cliente lo cierra, entonces el modal desaparece y el cliente regresa a la pantalla anterior.",
+        "Dado que el cliente no ha subido de nivel de beneficio con el pago, cuando el pago se procesa, entonces no aparece el modal de celebración."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-15"],
+      "open_questions": [],
+      "priority": 17,
+      "origin": "user-stories.md → US-11; requisitos.md → R-20"
+    },
+    {
+      "id": "US-17",
+      "epic": "EPIC-04",
+      "title": "Actualización del nivel en el gráfico de progreso tras recibir el premio",
+      "as_a": "cliente",
+      "want": "ver el gráfico de progreso actualizado con mi nuevo nivel al cerrar el modal de celebración",
+      "so_that": "confirmo visualmente que el sistema reconoció mi pago y mi progreso queda reflejado de inmediato",
+      "acceptance_criteria": [
+        "Dado que el cliente cierra el modal de celebración, cuando vuelve a ver el gráfico de progreso, entonces el nuevo nivel de beneficio ganado está reflejado en el gráfico.",
+        "Dado que el nivel se actualiza, cuando el cliente vuelve al gráfico, entonces el nivel anterior está visualmente marcado como completado y el siguiente nivel disponible está visible."
+      ],
+      "estimate": 2,
+      "dependencies": ["US-16"],
+      "open_questions": [],
+      "priority": 18,
+      "origin": "user-stories.md → US-11 criterio 2; requisitos.md → R-19, R-20"
+    },
+    {
+      "id": "US-18",
+      "epic": "EPIC-05",
+      "title": "Notificación push con monto y fecha 5 días antes del vencimiento",
+      "as_a": "cliente con notificaciones push habilitadas",
+      "want": "recibir una notificación push cuando falten 5 días para mi fecha mínima de pago, con el monto y la fecha",
+      "so_that": "no olvido pagar y evito recargos por mora",
+      "acceptance_criteria": [
+        "Dado que tengo notificaciones push habilitadas y faltan 5 días para mi fecha mínima de pago, cuando llega ese momento, entonces recibo una notificación con el monto exacto y la fecha de vencimiento.",
+        "Dado que ya realicé el pago antes del disparo de la notificación, cuando llega el momento programado, entonces la APP no envía la notificación.",
+        "Dado que recibo la notificación, cuando la veo en la bandeja del sistema operativo, entonces el texto indica claramente el monto y la fecha sin tecnicismos."
+      ],
+      "estimate": 5,
+      "dependencies": ["US-13"],
+      "open_questions": [],
+      "priority": 16,
+      "origin": "user-stories.md → US-12; requisitos.md → R-37; evidence-map.json → pain: olvido-fecha-pago"
+    },
+    {
+      "id": "US-19",
+      "epic": "EPIC-05",
+      "title": "Deep link desde la notificación al estado de cuenta",
+      "as_a": "cliente",
+      "want": "que al tocar la notificación push de pago la APP se abra directamente en mi estado de cuenta",
+      "so_that": "actúo sobre mi pago en un solo paso sin navegar manualmente",
+      "acceptance_criteria": [
+        "Dado que recibo la notificación push de pago y la toco, cuando la APP se abre o pasa a primer plano, entonces se muestra directamente la pantalla de estado de cuenta.",
+        "Dado que la APP estaba cerrada cuando toco la notificación, cuando abre, entonces lleva directamente al estado de cuenta sin pasar por el dashboard.",
+        "Dado que mi sesión expiró y toco la notificación, cuando la APP abre, entonces me lleva primero al login y, tras autenticarme, me redirige al estado de cuenta."
+      ],
+      "estimate": 2,
+      "dependencies": ["US-18", "US-13"],
+      "open_questions": [],
+      "priority": 19,
+      "origin": "user-stories.md → US-12 criterio 2"
+    },
+    {
+      "id": "US-20",
+      "epic": "EPIC-05",
+      "title": "Supresión de la notificación de pago cuando el cliente ya pagó",
+      "as_a": "cliente que ya realizó su pago antes de la fecha límite",
+      "want": "que la APP no me envíe la notificación de recordatorio si ya pagué",
+      "so_that": "no recibo alertas innecesarias una vez que cumplí con mi obligación",
+      "acceptance_criteria": [
+        "Dado que el cliente realiza un pago antes del momento programado de la notificación, cuando llega el momento programado, entonces la APP verifica el estado del pago y cancela la notificación automáticamente.",
+        "Dado que la notificación fue cancelada por pago realizado, cuando el cliente abre la APP, entonces no ve ninguna alerta de pago pendiente en el dashboard ni en la bandeja del sistema."
+      ],
+      "estimate": 2,
+      "dependencies": ["US-18"],
+      "open_questions": [],
+      "priority": 20,
+      "origin": "user-stories.md → US-12 criterio 3"
+    }
+  ],
+  "out_of_scope_mvp": [
+    "Catálogo de canje y redención de puntos (R-22 a R-31 / US-022–US-031)",
+    "Autenticación biométrica (R-13 / US-013)",
+    "Selección de modelo visual de tarjeta (R-17 / US-017)",
+    "Gestión completa de perfil: cambio de contraseña desde perfil, eliminación de cuenta (R-32–R-34)",
+    "Banner administrable desde back-office (R-38) — pendiente entrevista con Administrador",
+    "Historial completo de movimientos (R-21) — el estado de cuenta cubre la necesidad inmediata del MVP",
+    "Accesibilidad WCAG completa (R-39) — objetivo V2"
+  ],
+  "open_questions": [
+    "OQ-01: ¿El backend de Resuelve expone APIs estables para verificación de cédula, OTP, persistencia y estado de solicitud? Asunción del MVP: sí. Riesgo alto si no se valida antes del Sprint 1.",
+    "OQ-02: ¿Qué sistema gestiona las notificaciones push? (FCM, APNs o gateway propio.) El Architect debe decidirlo antes de estimar US-18.",
+    "OQ-03: ¿Cuántos niveles exactos tiene el gráfico de incentivos y cuáles son los umbrales y tipos de premio para el MVP? Discovery dice 'al menos 3 niveles'. Definición requerida antes de refinar US-15/US-16.",
+    "OQ-04: ¿Cómo define el backend técnicamente 'pagó a tiempo'? ¿Evento push del backend o polling? Determina diseño de US-16 y US-20.",
+    "OQ-05: ¿El Administrador de negocio (back-office/banner) es stakeholder del MVP actual? mvp-canvas.md lo excluye. Pendiente entrevista."
+  ]
+}
