@@ -1,17 +1,20 @@
 # ADR-0002 · Notificaciones push: FCM como capa unificada para iOS y Android
 **Estado:** aceptado
-**Fecha:** 2026-06-20
+**Fecha:** 2026-06-24
 
 ## Contexto y fuerza
 
 El MVP incluye notificaciones push de pago (US-18), deep link desde la notificación
 al estado de cuenta (US-19) y supresión de notificación cuando el cliente ya pagó
-(US-20). Estas tres historias requieren una infraestructura de push que:
+(US-20). Estas tres historias de EPIC-05 requieren una infraestructura de push que:
 
 1. Funcione en iOS y Android (porque la plataforma es React Native — ADR-0001).
 2. Permita al backend de Resuelve disparar notificaciones desde el evento de
    confirmación de pago (ADR-0003).
 3. Soporte cancelación de notificaciones programadas cuando el estado del pago cambia.
+4. Se integre con el deep link de US-19: al tocar la notificación, la APP abre
+   directamente en la pantalla de estado de cuenta, incluso si la sesión expiró
+   (en ese caso primero al login y luego al estado de cuenta — criterio 3 de US-19).
 
 Esta es la **OQ-02** identificada en `backlog.json`: el backlog exigía definir el
 proveedor antes de comprometer US-18 en sprint.
@@ -26,6 +29,8 @@ para iOS y Android.
 - El backend (Servicio de Pagos / Webhook) llama a la API de FCM para enviar
   notificaciones o cancelar las programadas.
 - FCM entrega a APNs en iOS y directamente al dispositivo en Android.
+- El payload de la notificación incluye un campo `deep_link` o `screen` que el
+  módulo de Notificaciones de la APP usa para navegar al estado de cuenta (US-19).
 
 ## Alternativas consideradas
 
@@ -46,17 +51,23 @@ para iOS y Android.
 **Ganamos:**
 - Abstracción unificada: el backend solo habla con FCM; FCM resuelve la entrega
   a APNs (iOS) y Android sin lógica adicional en el backend.
-- Soporte nativo para data payloads: el push puede llevar `{ type: "payment_confirmed" }`
-  para que la APP decida qué hacer sin un segundo request (US-16, US-20).
-- Cancelación de notificaciones programadas: FCM soporta Topic Messaging y
-  cancelación por `message_id` o por colapso de clave, lo que permite implementar
-  US-20 (supresión post-pago).
+- Soporte nativo para data payloads: el push puede llevar
+  `{ type: "payment_confirmed", level: N, screen: "account_status" }` para que la
+  APP decida qué hacer sin un segundo request (US-16, US-19, US-20).
+- Cancelación de notificaciones programadas: FCM soporta colapso de clave
+  (`collapse_key: payment_{client_id}`), lo que permite implementar US-20
+  (supresión post-pago sin una segunda llamada de cancelación explícita).
 - Sin costo hasta volúmenes de millones de mensajes/mes.
+- El deep link (US-19) se implementa con el campo de data del push, sin
+  infraestructura adicional.
 
 **Aceptamos:**
 - Dependencia de Firebase (Google). Si Resuelve tiene restricciones de proveedor
   cloud, debe validarse con el equipo de infraestructura antes del Sprint 1.
 - El device token de FCM debe renovarse; la APP debe manejar el callback
-  `onTokenRefresh` y actualizar el backend.
+  `onTokenRefresh` y actualizar el backend con el nuevo token.
 - APNs requiere certificado de Apple y configuración en Firebase Console; añade
   un paso de setup inicial en el onboarding técnico del proyecto.
+- Si la sesión del cliente está expirada al tocar la notificación (US-19,
+  criterio 3), la APP debe guardar el destino del deep link para redirigir después
+  del login. Costo de implementación menor, no bloqueante.

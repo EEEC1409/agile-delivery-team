@@ -1,14 +1,38 @@
 {
   "product": "APP Resuelve",
   "sprint": 1,
-  "sprint_goal": "El cliente pre-aprobado puede descargar la APP, verificar su cédula, registrarse con OTP y solicitar su línea de crédito en 3 pasos desde el celular, con mensajes claros si falla la red.",
+  "sprint_goal": "El cliente pre-aprobado puede descargar la APP, verificar su identidad, completar su registro con OTP y enviar su solicitud de línea de crédito en 3 pasos desde el celular, con mensajes claros si falla la red — sin necesidad de visitar una sucursal ni contactar a un asesor.",
   "capacity": 20,
   "committed": 20,
   "stories": ["US-01", "US-02", "US-03", "US-04", "US-05", "US-11"],
-  "deferred": ["US-07", "US-06", "US-08", "US-09", "US-10", "US-12", "US-13", "US-14", "US-15", "US-16", "US-17", "US-18", "US-19", "US-20"],
-  "notes": [
-    "US-07 (login, 3 pts, prioridad 6) no cabe en los 2 pts restantes tras US-05. Se incluye US-11 (2 pts, prioridad 7, sin dependencias). US-07 abre Sprint 2.",
-    "US-11 (mensajes de conectividad) es transversal y sin dependencias: robustece el flujo de onboarding ante errores de red durante el registro.",
-    "Pre-condición crítica: el equipo debe validar el contrato de API del backend de Resuelve (OQ-01) antes del inicio del sprint. Sin contrato, construir mocks para US-02, US-03 y US-04."
-  ]
+  "deferred": [
+    "US-06",
+    "US-07",
+    "US-08",
+    "US-09",
+    "US-10",
+    "US-12",
+    "US-13",
+    "US-14",
+    "US-15",
+    "US-16",
+    "US-17",
+    "US-18",
+    "US-19",
+    "US-20"
+  ],
+  "selection_notes": [
+    "US-01 a US-05: flujo de onboarding completo en cadena de dependencias. 18 pts acumulados.",
+    "US-07 (login, 3 pts, prioridad 6): no cabe — 18 + 3 = 21 pts supera la capacidad por 1 pt.",
+    "US-11 (mensajes de conectividad, 2 pts, prioridad 7, sin dependencias): ocupa el margen restante exacto (18 + 2 = 20 pts). Aporta robustez transversal al flujo de registro.",
+    "US-07 abre Sprint 2 como historia de mayor prioridad y habilita en cadena 13 historias bloqueadas."
+  ],
+  "risks": [
+    "OQ-01: APIs de backend de Resuelve (cedula, OTP, persistencia) no validadas. Riesgo alto. Construir mocks antes del Day 1.",
+    "OQ-02: proveedor de push (FCM/APNs/gateway) no definido. Bloquea US-18 y EPIC-05 en Sprint 3.",
+    "OQ-03: niveles exactos del gráfico de incentivos no definidos. Bloquea US-15 y US-16.",
+    "OQ-04: definicion tecnica de 'pago a tiempo' no resuelta. Afecta diseño de US-16 y US-20.",
+    "Discovery realizado con 1 sola entrevista. Triangular antes de comprometer US-03 y US-04."
+  ],
+  "generated_at": "2026-06-24"
 }

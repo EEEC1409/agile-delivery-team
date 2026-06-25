@@ -27,7 +27,7 @@ gate directo a la métrica de éxito del MVP (≥ 40 % de conversión en 7 días
 - `mvp-canvas.md` → Métrica de éxito: tasa de conversión de onboarding
 - `user-stories.md` → US-01, US-02, US-03, US-04, US-05
 - `requisitos.md` → R-01, R-02, R-03, R-04, R-05, R-06, R-07, R-08, R-09, R-10, R-11
-- `evidence-map.json` → pains: `proceso-no-simple`, `incertidumbre-estado-solicitud`
+- `evidence-map.json` → pains: `proceso-no-simple`, `incertidumbre-estado-solicitud`, `rechazo-sin-explicacion`
 - `personas.md` → Cliente Resuelve (pre-aprobado / nuevo)
 
 **Historias candidatas:**

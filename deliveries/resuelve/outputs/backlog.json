@@ -1,6 +1,6 @@
 {
   "product": "APP Resuelve",
-  "generated_at": "2026-06-20",
+  "generated_at": "2026-06-24",
   "discovery_warning": "Generado con 1 sola fuente de entrevista. Triangular con segunda entrevista antes de comprometer desarrollo.",
   "success_metric": {
     "name": "Tasa de conversión de onboarding",
@@ -80,7 +80,7 @@
       "dependencies": ["US-01"],
       "open_questions": [],
       "priority": 2,
-      "origin": "user-stories.md → US-01; requisitos.md → R-02, R-04"
+      "origin": "user-stories.md → US-01; requisitos.md → R-02, R-04; evidence-map.json → pain: rechazo-sin-explicacion"
     },
     {
       "id": "US-03",
@@ -388,7 +388,7 @@
       "dependencies": ["US-18", "US-13"],
       "open_questions": [],
       "priority": 19,
-      "origin": "user-stories.md → US-12 criterio 2"
+      "origin": "user-stories.md → US-12 criterio 2; requisitos.md → R-37"
     },
     {
       "id": "US-20",
@@ -405,7 +405,7 @@
       "dependencies": ["US-18"],
       "open_questions": [],
       "priority": 20,
-      "origin": "user-stories.md → US-12 criterio 3"
+      "origin": "user-stories.md → US-12 criterio 3; requisitos.md → R-37"
     }
   ],
   "out_of_scope_mvp": [
